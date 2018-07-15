@@ -3,7 +3,14 @@ from Resources.Names import name
 import random
 import csv
 
-DESC_CHARACTERS = "Resources/Characters/character.csv"
+DESC_BASE = "Resources/Characters/"
+DESC_CHARACTERS = DESC_BASE + "character.csv"
+DESC_TALENT = DESC_BASE + "talent.csv"
+DESC_MANNER = DESC_BASE + "mannerisms.csv"
+DESC_INTER = DESC_BASE + "interaction.csv"
+DESC_BOND = DESC_BASE + "bond.csv"
+DESC_APPEARANCE = DESC_BASE + "appearance.csv"
+DESC_SECRET = DESC_BASE + "secret.csv"
 
 
 class Character:
@@ -49,7 +56,7 @@ class Character:
         else:
             return "woman"
 
-    def get_description(self):
+    def get_brief_description(self):
         with open(DESC_CHARACTERS) as file:
             reader = csv.reader(file, delimiter=';', quotechar='|')
             desc_list = []
@@ -62,3 +69,34 @@ class Character:
             text = text.replace("#", self.get_gender())
             text = text.replace("*", self.get_possessive())
         return text
+
+    def get_description(self):
+        full_name = self.get_full_name()
+        brief_desc = self.get_brief_description()
+        attributes = (full_name + " - " + brief_desc)
+
+        with open(DESC_APPEARANCE) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        with open(DESC_TALENT) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        with open(DESC_MANNER) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        with open(DESC_INTER) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        with open(DESC_BOND) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        with open(DESC_SECRET) as file:
+            reader = csv.reader(file)
+            attributes = attributes + "\n" + random.choice(list(reader))[0]
+
+        return attributes

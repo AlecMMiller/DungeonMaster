@@ -1,6 +1,7 @@
 from Resources.Regions import region
 from Resources.Names import name
 from Resources.Taverns import tavern
+from Resources.Characters import character
 
 SPLASH_TEXT = "______                                   ___  ___          _            \n" \
               "|  _  \                                  |  \/  |         | |\n" \
@@ -18,6 +19,7 @@ class Browser:
         self.region = region.Region()
         self.last_command = None
         self.current_building = None
+        self.current_character = None
 
     def run(self):
         packet = input("> ").split()
@@ -56,6 +58,12 @@ class Browser:
                 self.current_building.display()
             except TypeError:
                 print("No region set")
+
+        elif command == "char":
+            self.current_character = character.Character(self.region)
+
+            description = self.current_character.get_description()
+            print(description)
 
 
 
