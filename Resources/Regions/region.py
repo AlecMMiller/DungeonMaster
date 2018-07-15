@@ -38,12 +38,13 @@ class Region:
     def get_race(self):
         race_total = sum(self.race_breakdown)
 
-        selection = random.randint(0, race_total)
+        selection = random.randint(1, race_total+1)
         got_race = Races.HUMAN
 
         for race, population in enumerate(self.race_breakdown):
             if population >= selection:
                 got_race = Races(race)
+                break
             else:
                 selection -= population
 
