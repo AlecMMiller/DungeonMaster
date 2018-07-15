@@ -115,7 +115,6 @@ def get_desc_barkeeper(mood=None, fill=None):
                 fill = selection[2]
             except IndexError:
                 fill = None
-        print(mood)
         return text.strip(), mood, fill
 
 
