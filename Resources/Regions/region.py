@@ -25,15 +25,21 @@ class Region:
         self.name_region = None
 
     def set_region(self, region):
+        region = region.title()
+        region_data = None
+
         with open(REGION_DIRECTORY) as file:
             reader = csv.reader(file, delimiter=',', quotechar='|')
             for row in reader:
                 if row[0] == region:
                     region_data = row
 
-        self.race_breakdown = list(map(int, region_data[21:30]))
-        self.surname_breakdown = list(map(int, region_data[3:21]))
-        self.name_region = region_data[2].lower()
+        if region_data:
+            self.race_breakdown = list(map(int, region_data[21:30]))
+            self.surname_breakdown = list(map(int, region_data[3:21]))
+            self.name_region = region_data[2].lower()
+        else:
+            print("No region " + region)
 
     def get_race(self):
         race_total = sum(self.race_breakdown)

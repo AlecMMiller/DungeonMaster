@@ -1,10 +1,6 @@
-from Resources.Regions import region
-from Resources.Taverns import tavern
+from Utils import browser
 
-current_region = region.Region()
-current_region.set_region('Murann')
+system = browser.Browser()
 
-building = tavern.Tavern(current_region)
-building.display()
-
-
+while 1:
+    system.run()
