@@ -1,0 +1,1 @@
+Credit for the names in this generator goes to Redditor /u/OrkishBlade for his name list here https://www.reddit.com/r/DnDBehindTheScreen/comments/50pcg1/a_post_about_names_names_for_speakers_of_the/
