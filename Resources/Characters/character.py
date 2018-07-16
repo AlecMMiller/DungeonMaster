@@ -5,6 +5,8 @@ import csv
 
 DESC_BASE = "Resources/Characters/"
 DESC_CHARACTERS = DESC_BASE + "character.csv"
+DESC_HAIR_COLOR = DESC_BASE + "hair_colors.csv"
+
 DESC_TALENT = DESC_BASE + "talent.csv"
 DESC_MANNER = DESC_BASE + "mannerisms.csv"
 DESC_INTER = DESC_BASE + "interaction.csv"
@@ -31,6 +33,8 @@ class Character:
 
         self.mood = mood
 
+        self.hair_color = None
+
     def get_full_name(self):
         return self.first_name + " " + self.surname
 
@@ -56,7 +60,15 @@ class Character:
         else:
             return "woman"
 
+    def get_hair_color(self):
+        with open(DESC_HAIR_COLOR) as file:
+            reader = csv.reader(file)
+            self.hair_color = random.choice(list(reader))[0]
+
     def get_brief_description(self):
+        if not self.hair_color:
+            self.get_hair_color()
+
         with open(DESC_CHARACTERS) as file:
             reader = csv.reader(file, delimiter=';', quotechar='|')
             desc_list = []
@@ -68,6 +80,7 @@ class Character:
             text = text.replace("$", self.race)
             text = text.replace("#", self.get_gender())
             text = text.replace("*", self.get_possessive())
+            text = text.replace("&", self.hair_color)
         return text
 
     def get_description(self):
