@@ -60,10 +60,28 @@ class Browser:
                 print("No region set")
 
         elif command == "char":
-            self.current_character = character.Character(self.region)
+            try:
+                gender = packet[1].title()
+                if gender != name.FEMALE and gender != name.MALE:
+                    print(gender + " not recognised")
+                    gender = None
+            except IndexError:
+                gender = None
+            try:
+                mood = packet[2].title()
+                if mood != "Good" and mood != "Bad":
+                    print(mood + " not recognised")
+                    mood = None
+            except IndexError:
+                mood = None
+
+            self.current_character = character.Character(self.region, gender=gender, mood=mood)
 
             description = self.current_character.get_description()
             print(description)
+
+        else:
+            print("Unknown command " + command)
 
 
 
