@@ -3,7 +3,7 @@ from Resources.Names import name
 import random
 import csv
 
-DESC_BASE = "Resources/Characters/"
+DESC_BASE = "Resources/NPC/"
 DESC_CHARACTERS = DESC_BASE + "character.csv"
 DESC_HAIR_COLOR = DESC_BASE + "hair_colors.csv"
 

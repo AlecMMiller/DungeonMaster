@@ -1,7 +1,7 @@
 from Resources.Regions import region
 from Resources.Names import name
 from Resources.Taverns import tavern
-from Resources.Characters import character
+from Resources.NPC import character
 
 SPLASH_TEXT = "______                                   ___  ___          _            \n" \
               "|  _  \                                  |  \/  |         | |\n" \

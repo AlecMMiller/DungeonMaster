@@ -1,6 +1,6 @@
 from Utils import browser
 
-system = browser.Browser()
+#system = browser.Browser()
 
-while 1:
-    system.run()
+#while 1:
+#    system.run()
