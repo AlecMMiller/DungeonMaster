@@ -2,6 +2,7 @@ from Resources.Regions import region
 from Resources.Names import name
 from Resources.Taverns import tavern
 from Resources.NPC import character
+from Resources.Players import player_parser
 
 SPLASH_TEXT = "______                                   ___  ___          _            \n" \
               "|  _  \                                  |  \/  |         | |\n" \
@@ -20,6 +21,7 @@ class Browser:
         self.last_command = None
         self.current_building = None
         self.current_character = None
+        self.players = player_parser.Players()
 
     def run(self):
         packet = input("> ").split()
@@ -79,6 +81,13 @@ class Browser:
 
             description = self.current_character.get_description()
             print(description)
+
+        elif command == "spot":
+            self.players.get_spot()
+        elif command == "motive":
+            self.players.get_sense_motive()
+        elif command == "listen":
+            self.players.get_listen()
 
         else:
             print("Unknown command " + command)
