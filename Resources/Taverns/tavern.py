@@ -1,7 +1,7 @@
 import csv
 import random
 from Resources.Regions import region
-from Resources.Characters import character
+from Resources.NPC import character
 
 MAIN_DIRECTORY = "Resources/Taverns/"
 
@@ -40,9 +40,14 @@ class Tavern:
 
         self.owner = character.Character(self.region, mood=self.mood)
 
-        barkeep_text = barkeep_text.replace("$", self.owner.get_description())
+        barkeep_text = barkeep_text.replace("$", self.owner.get_brief_description())
         barkeep_text = barkeep_text.replace("#", self.owner.get_pronoun())
-        self.flavor_text = self.flavor_text + " " + barkeep_text
+        self.flavor_text = self.flavor_text + " " + barkeep_text + "\n"
+
+        if random.randint(0, 1):
+            character_text = get_desc_corner(self.mood)
+            self.flavor_text = self.flavor_text + character_text + "\n"
+
 
     def display(self):
         print(self.name + "\n\n")
@@ -116,6 +121,10 @@ def get_desc_barkeeper(mood=None, fill=None):
             except IndexError:
                 fill = None
         return text.strip(), mood, fill
+
+
+def get_desc_corner(mood=None):
+    return "In the corner sits Sam the cat, sovereign of all England."
 
 
 def _get_modifier_noun():
